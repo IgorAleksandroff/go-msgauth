@@ -36,6 +36,10 @@ func (cf *crlfFixer) Fix(b []byte) []byte {
 		switch ch {
 		case '\r':
 			cf.cr = true
+			if !prevCR {
+				res = append(res, '\r')
+			}
+			continue
 		case '\n':
 			if !prevCR {
 				res = append(res, '\r')
